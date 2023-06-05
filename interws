@@ -1,0 +1,57 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class WhatsAppInterface extends JFrame {
+
+    public WhatsAppInterface() {
+        setTitle("WhatsApp");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(400, 600);
+        setLayout(new BorderLayout());
+
+        // Panel de contactos
+        JPanel contactPanel = new JPanel();
+        contactPanel.setLayout(new BoxLayout(contactPanel, BoxLayout.Y_AXIS));
+        JLabel contactsLabel = new JLabel("Contactos");
+        contactPanel.add(contactsLabel);
+
+        // Lista de contactos
+        JList<String> contactsList = new JList<>(new String[]{"Contacto 1", "Contacto 2", "Contacto 3"});
+        contactPanel.add(new JScrollPane(contactsList));
+
+        // Panel de mensajes
+        JPanel messagePanel = new JPanel();
+        messagePanel.setLayout(new BorderLayout());
+        JLabel messagesLabel = new JLabel("Mensajes");
+        messagePanel.add(messagesLabel, BorderLayout.NORTH);
+
+        // Área de texto para mensajes
+        JTextArea messageArea = new JTextArea();
+        messageArea.setEditable(false);
+        messagePanel.add(new JScrollPane(messageArea), BorderLayout.CENTER);
+
+        // Panel de entrada de mensajes
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BorderLayout());
+
+        // Campo de texto para escribir mensajes
+        JTextField inputField = new JTextField();
+        inputPanel.add(inputField, BorderLayout.CENTER);
+
+        // Botón de enviar mensaje
+        JButton sendButton = new JButton("Enviar");
+        inputPanel.add(sendButton, BorderLayout.EAST);
+
+        // Agregar paneles al frame principal
+        add(contactPanel, BorderLayout.WEST);
+        add(messagePanel, BorderLayout.CENTER);
+        add(inputPanel, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            WhatsAppInterface interfaceFrame = new WhatsAppInterface();
+            interfaceFrame.setVisible(true);
+        });
+    }
+}
